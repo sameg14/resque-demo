@@ -1,0 +1,12 @@
+{
+    "name": "samirpatel/resque-demo",
+    "authors": [
+        {
+            "name": "Samir Patel",
+            "email": "samir.patel@lin-digital.com"
+        }
+    ],
+    "require": {
+		"chrisboulton/php-resque": "dev-master"
+	}
+}
