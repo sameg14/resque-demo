@@ -67,7 +67,29 @@ class JobScheduler
     public function getStatus()
     {
         $Job = new Resque_Job_Status($this->jobId);
-        return $Job->get();
+        $jobStatusCode =  $Job->get();
+
+        switch($jobStatusCode){
+
+            case Resque_Job_Status::STATUS_WAITING:
+                return 'Waiting';
+            break;
+
+            case Resque_Job_Status::STATUS_COMPLETE:
+                return 'Complete';
+            break;
+
+            case Resque_Job_Status::STATUS_FAILED:
+                return "Failed";
+            break;
+
+            case Resque_Job_Status::STATUS_RUNNING:
+                return 'Running';
+            break;
+
+            default:
+                return 'Unknown! Code: '.$jobStatusCode;
+        }
     }
 
     /**

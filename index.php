@@ -14,11 +14,15 @@ use Job\Scheduler\JobScheduler;
 /** @var string $route What page are we on? */
 $route = isset($_GET['route']) ? $_GET['route'] : 'homepage';
 
+echo '<style>body{font-family: verdana, arial, sans-serif; background-color: #eee; padding:50px;}</style>';
+
 switch ($route) {
 
     case 'homepage':
+    {
         ?>
         <h3>Resque Demo</h3>
+        <hr style="color:#D01F3C;"/>
         <ul>
             <li>
                 <a href="index.php?route=schedule&jobClass=TestJob">
@@ -41,9 +45,10 @@ switch ($route) {
         </ul>
         <?php
         break;
+    }
 
     case 'schedule':
-
+    {
         $Scheduler = new JobScheduler();
 
         /** @var string $jobClass What job are we trying to run? */
@@ -57,7 +62,7 @@ switch ($route) {
         // Adding a switch here to create custom data for each of these jobs
         if ($jobClass == 'TestJob') {
 
-            $jobData = array('data' => 'nope', 'soup' => 'foo young');
+            $jobData = array('data' => 'no', 'soup' => 'foo young');
 
         } elseif ($jobClass == 'EmailJob') {
 
@@ -70,25 +75,62 @@ switch ($route) {
 
         // Set job data on the scheduler
         $Scheduler->setJobData($jobData);
-        break;
 
-    default:
-        echo 'No Route defined!';
+        // Which queue do you want this job to run on
+        $Scheduler->setQueue($queueName = 'default');
+
+        // Schedule this job i.e. put it in the queue for a worker to consumer
+        $jobId = $Scheduler->schedule();
+
+        echo 'Your job "<b>' . $jobClass . '</b>" was successfully scheduled. JobId: <b>' . $jobId . '</b>';
+
+        break;
+    }
+
+    case 'status':
+    {
+        $jobId = $_REQUEST['jobId'];
+
+        $Scheduler = new JobScheduler();
+
+        $Scheduler->setJobId($jobId);
+
+        $status = $Scheduler->getStatus();
+
+        echo $status;
         exit;
+    }
 }
 
-showStatusForm();
+// Poll the /status endpoint for the status of the job
+if (isset($jobId) && !empty($jobId)) {
+    echo '<h4>Checking Job Status</h4>';
+    ?>
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" language="javascript">
 
+        var numChecks = 0;
 
-// Create some data payload to send to the job, this is what gets serialized and put in redis
-$jobArgs = array(
-    'name' => 'Samir',
-    'timestamp' => strtotime('now')
-);
-//
-//$jobId = Resque::enqueue($queue = 'default', $jobClass, $jobArgs, $trackStatus = true);
-//
-//echo 'Your job was successfully scheduled. Your jobId: '.$jobId;
+        setInterval(function () {
 
+            $.ajax({
+                url: "/index.php",
+                data: {
+                    route: 'status',
+                    jobId: "<?php echo($jobId);?>"
+                },
+                success: function (data) {
 
+                    // Append the status message from the server to this Div.
+                    $("#div-job-status").append(numChecks + ') ').append(data).append('<br/>');
+                }
+            });
 
+            ++numChecks;
+
+        }, 3000);
+    </script>
+    <div id="div-job-status"></div>
+<?php
+}
+?>
