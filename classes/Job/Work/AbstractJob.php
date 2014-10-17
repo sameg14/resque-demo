@@ -3,17 +3,15 @@
 namespace Job\Work;
 
 /**
- * Class AbstractWork
+ * Class AbstractJob
  *
  * @package Job\Work
  */
-abstract class AbstractWork
+abstract class AbstractJob
 {
     /**
      * All children must implement
      * @return void
      */
     abstract public function perform();
-
-
 }

@@ -1,6 +1,10 @@
 <?php
 require('vendor/autoload.php');
 
+
+define('REDIS_SERVER_IP', '127.0.0.1');
+define('REDIS_SERVER_PORT', 6379);
+
 // Register a custom loader because composer is being chafe
 spl_autoload_register(
     function ($className) {
