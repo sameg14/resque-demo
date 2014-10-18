@@ -1,13 +1,26 @@
 <?php
 namespace Job\Work;
 
+/**
+ * Class TestJob - Test resque job
+ *
+ * @package Job\Work
+ */
 class TestJob extends AbstractJob
 {
+    /**
+     * File pointer
+     *
+     * @var resource
+     */
+    protected $fp;
+
     /**
      * Set up something before perform, like establishing a database connection
      */
     public function setUp()
     {
+        $this->fp = fopen('/tmp/testjob.txt', 'a+');
     }
 
     /**
@@ -15,7 +28,8 @@ class TestJob extends AbstractJob
      */
     public function perform()
     {
-        sleep(10);
+        // Add some randomness to simulate actual work
+        sleep(rand(1, 3));
 
         /**
          * These are the array arguments that you passed to the job
@@ -27,12 +41,14 @@ class TestJob extends AbstractJob
         $args = $this->args;
 
         // Create a JSON string out of the input arguments
-        $string = json_encode(array_merge(array('date' => date('Y-m-d h:i:s')), $args)).PHP_EOL;
+        $string = 'YOUR PAYLOAD::' . PHP_EOL;
+        $string .= json_encode(array_merge(array('date' => date('Y-m-d h:i:s')), $args)) . PHP_EOL;
+        $string .= 'YOUR JOB ID:: ';
+        $string .= $this->getJobId() . PHP_EOL;
+        $string .= '--------------------------------------------------------------------------------'.PHP_EOL;
 
-        // Append our string to a file
-        $fp = fopen('/tmp/testjob.txt', 'a+');
-        fwrite($fp, $string);
-        fclose($fp);
+        // Append our string to the test file
+        fwrite($this->fp, $string);
     }
 
     /**
@@ -40,5 +56,6 @@ class TestJob extends AbstractJob
      */
     public function tearDown()
     {
+        fclose($this->fp);
     }
 }
