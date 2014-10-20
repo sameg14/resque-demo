@@ -14,13 +14,17 @@ use Job\Scheduler\JobScheduler;
 /** @var string $route What page are we on? */
 $route = isset($_GET['route']) ? $_GET['route'] : 'homepage';
 
-echo '<style>body{font-family: verdana, arial, sans-serif; background-color: #eee; padding:50px;}</style>';
-
 switch ($route) {
 
     case 'homepage':
     {
         ?>
+        <style>body {
+                font-family: verdana, arial, sans-serif;
+                background-color: #eee;
+                padding: 50px;
+            }
+        </style>
         <h3>Resque Demo</h3>
         <hr style="color:#D01F3C;"/>
         <ul>
@@ -28,19 +32,19 @@ switch ($route) {
                 <a href="index.php?route=schedule&jobClass=TestJob">
                     Schedule Test Job
                 </a>
-                - Fire off a job that doesn't really do anything, but takes a while to complete
+                - Fire off a job that doesn't really do anything interesting, but takes a while to complete
             </li>
             <li>
                 <a href="index.php?route=schedule&jobClass=EmailJob">
                     Schedule Email Job
                 </a>
-                - Schedule a job, and sends out a large email
+                - Schedule a job that grabs HTML from a page and sends it out via email
             </li>
             <li>
                 <a href="index.php?route=schedule&jobClass=DataMinerJob">
                     Schedule Data Miner Job
                 </a>
-                - Spin up a job that scrapes all the missed connections from craigslist, and returns the data back to the caller via a DataBroker
+                - Spin up a job that scrapes Craigslist missed connections. Return the data back to the client via a redis backed DataBroker
             </li>
         </ul>
         <?php
@@ -52,7 +56,7 @@ switch ($route) {
         $Scheduler = new JobScheduler();
 
         /** @var string $jobClass What job are we trying to run? */
-        $jobClass = isset($_GET['job']) ? $_GET['job'] : 'TestJob';
+        $jobClass = isset($_GET['jobClass']) ? $_GET['jobClass'] : 'TestJob';
 
         $namespacePrefix = 'Job\\Work\\';
 
@@ -66,7 +70,12 @@ switch ($route) {
 
         } elseif ($jobClass == 'EmailJob') {
 
-            $jobData = array('email_address' => 'sameg14@gmail.com');
+            $jobData = array(
+                'to_name' => 'Samir Patel',
+                'to_address' => 'sameg14@gmail.com',
+                'subject' => 'Google news here',
+                'url' => 'https://news.google.com/'
+            );
 
         } elseif ($jobClass == 'DataMinerJob') {
 
@@ -81,7 +90,14 @@ switch ($route) {
 
         // Schedule this job i.e. put it in the queue for a worker to consumer
         $jobId = $Scheduler->schedule();
-
+        echo '
+        <style>
+            body {
+                font-family: verdana, arial, sans-serif;
+                background-color: #eee;
+                padding: 50px;
+            }
+        </style>';
         echo 'Your job "<b>' . $jobClass . '</b>" was successfully scheduled. JobId: <b>' . $jobId . '</b>';
 
         break;
@@ -89,15 +105,24 @@ switch ($route) {
 
     case 'status':
     {
+        $jsonResponse = array();
+
         $jobId = $_REQUEST['jobId'];
 
+        $jsonResponse['jobId'] = $jobId;
+
         $Scheduler = new JobScheduler();
-
         $Scheduler->setJobId($jobId);
-
         $status = $Scheduler->getStatus();
+        $jsonResponse['data'] = null;
+        $jsonResponse['status'] = $status;
 
-        echo $status;
+        // Job is complete, try to retrieve any data that was set by job.
+        if ($status == 'Complete') {
+            $returnedData = $Scheduler->getReturnedData();
+            $jsonResponse['data'] = $returnedData;
+        }
+        echo json_encode($jsonResponse);
         exit;
     }
 }
@@ -110,19 +135,31 @@ if (isset($jobId) && !empty($jobId)) {
     <script type="text/javascript" language="javascript">
 
         var numChecks = 0;
+        var shouldStopPolling = false;
 
-        setInterval(function () {
+        var interval = setInterval(function () {
 
+            // When the job is complete, stop polling the server
+            if (shouldStopPolling == true) {
+                clearInterval(interval);
+            }
+
+            // Make an AJAX call to the server to check status, and get data, if applicable.
             $.ajax({
                 url: "/index.php",
                 data: {
                     route: 'status',
                     jobId: "<?php echo($jobId);?>"
                 },
-                success: function (data) {
+                dataType: "json",
+                success: function (jsonData) {
+
+                    shouldStopPolling = jsonData['status'] == 'Complete' ? true : false;
+
+                    var writeString = 'Status = <b>' + jsonData['status'] + '</b>     Data = <b>' + jsonData['data'] + '</b>';
 
                     // Append the status message from the server to this Div.
-                    $("#div-job-status").append(numChecks + ') ').append(data).append('<br/>');
+                    $("#div-job-status").append('', numChecks + ') ').append('', writeString).append('', '<br/>');
                 }
             });
 

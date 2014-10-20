@@ -14,7 +14,7 @@ class TestJob extends AbstractJob
     public function perform()
     {
         // Add some randomness to simulate actual work
-        sleep(rand(1, 3));
+        sleep(rand(3, 10));
 
         /**
          * These are the array arguments that you passed to the job
@@ -30,14 +30,15 @@ class TestJob extends AbstractJob
         $string .= json_encode(array_merge(array('date' => date('Y-m-d h:i:s')), $args)) . PHP_EOL;
         $string .= 'YOUR JOB ID:: ';
         $string .= $this->getJobId() . PHP_EOL;
-        $string .= '--------------------------------------------------------------------------------'.PHP_EOL;
+        $string .= '--------------------------------------------------------------------------------' . PHP_EOL;
 
         $fp = fopen('/tmp/testjob.txt', 'a+');
 
         // Append our string to the test file
         fwrite($fp, $string);
         fclose($fp);
+
+        // If you want to send data back to the client, you can use the DataBroker
+        $this->DataBroker->setData('This the data that comes back from your job!');
     }
-
-
 }

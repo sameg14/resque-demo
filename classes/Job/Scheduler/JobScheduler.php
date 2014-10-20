@@ -2,6 +2,7 @@
 
 namespace Job\Scheduler;
 
+use Job\Util\DataBroker;
 use \Resque as Resque;
 use \Resque_Job_Status as Resque_Job_Status;
 
@@ -67,30 +68,42 @@ class JobScheduler
     public function getStatus()
     {
         $Job = new Resque_Job_Status($this->jobId);
-        $jobStatusCode =  $Job->get();
+        $jobStatusCode = $Job->get();
 
-        switch($jobStatusCode){
+        switch ($jobStatusCode) {
 
             case Resque_Job_Status::STATUS_WAITING:
                 return 'Waiting';
-            break;
+                break;
 
             case Resque_Job_Status::STATUS_COMPLETE:
                 return 'Complete';
-            break;
+                break;
 
             case Resque_Job_Status::STATUS_FAILED:
                 return "Failed";
-            break;
+                break;
 
             case Resque_Job_Status::STATUS_RUNNING:
                 return 'Running';
-            break;
+                break;
 
             default:
-                return 'Unknown! Code: '.$jobStatusCode;
+                return 'Unknown! Code: ' . $jobStatusCode;
         }
     }
+
+    /**
+     * Get any data that the worker set using DataBroker
+     *
+     * @return mixed
+     */
+    public function getReturnedData()
+    {
+        $DataBroker = new DataBroker($this->jobId);
+        return $DataBroker->get();
+    }
+
 
     /**
      * Get a list of all queues from redis.
