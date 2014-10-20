@@ -9,21 +9,6 @@ namespace Job\Work;
 class TestJob extends AbstractJob
 {
     /**
-     * File pointer
-     *
-     * @var resource
-     */
-    protected $fp;
-
-    /**
-     * Set up something before perform, like establishing a database connection
-     */
-    public function setUp()
-    {
-        $this->fp = fopen('/tmp/testjob.txt', 'a+');
-    }
-
-    /**
      * Do the work!
      */
     public function perform()
@@ -47,15 +32,12 @@ class TestJob extends AbstractJob
         $string .= $this->getJobId() . PHP_EOL;
         $string .= '--------------------------------------------------------------------------------'.PHP_EOL;
 
+        $fp = fopen('/tmp/testjob.txt', 'a+');
+
         // Append our string to the test file
-        fwrite($this->fp, $string);
+        fwrite($fp, $string);
+        fclose($fp);
     }
 
-    /**
-     * Run after perform, like closing resources, freeing up connections, writing out logs etc...
-     */
-    public function tearDown()
-    {
-        fclose($this->fp);
-    }
+
 }

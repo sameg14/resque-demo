@@ -10,5 +10,4 @@
 
 [Resque web](https://github.com/resque/resque-web) - Monitor job status and job queues
 
-[Resque Brain)](http://technology.stitchfix.com/resque-brain/) - Alternative to monitoring
-
+[Resque Brain](http://technology.stitchfix.com/resque-brain/) - Alternative to monitoring
