@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e20a44b3-607a-4099-b546-67f0ab0558ab" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/Job/Work/DataMinerJob.php" afterPath="$PROJECT_DIR$/classes/Job/Work/DataMinerJob.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/Job/Work/EmailJob.php" afterPath="$PROJECT_DIR$/classes/Job/Work/EmailJob.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/Job/Scheduler/JobScheduler.php" afterPath="$PROJECT_DIR$/classes/Job/Scheduler/JobScheduler.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/Job/Work/TestJob.php" afterPath="$PROJECT_DIR$/classes/Job/Work/TestJob.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="resque-demo.iws" />
@@ -30,10 +26,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.php" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="index.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="32" selection-start="797" selection-end="797" vertical-scroll-proportion="0.2145631" vertical-offset="387" max-vertical-offset="3382">
+            <state line="26" column="12" selection-start="595" selection-end="595" vertical-scroll-proportion="-1.2916666" vertical-offset="463" max-vertical-offset="3382">
               <folding>
                 <element signature="e#6#190#0" expanded="true" />
                 <element signature="e#641#663#0" expanded="true" />
@@ -41,6 +37,18 @@
                 <marker date="1413822092000" expanded="true" signature="2958:3101" placeholder="{...}" />
               </folding>
             </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="10" column="0" selection-start="487" selection-end="487" vertical-scroll-proportion="0.18500488" vertical-offset="0" max-vertical-offset="1027">
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="MarkdownPreviewEditor">
+            <state />
           </provider>
         </entry>
       </file>
@@ -110,12 +118,12 @@
         <option value="$PROJECT_DIR$/classes/Job/Util/Broker.php" />
         <option value="$PROJECT_DIR$/classes/Job/Util/DataBroker.php" />
         <option value="$PROJECT_DIR$/classes/Job/Work/AbstractJob.php" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/classes/Job/Scheduler/JobScheduler.php" />
         <option value="$PROJECT_DIR$/classes/Job/Work/TestJob.php" />
         <option value="$PROJECT_DIR$/classes/Job/Work/EmailJob.php" />
         <option value="$PROJECT_DIR$/classes/Job/Work/DataMinerJob.php" />
         <option value="$PROJECT_DIR$/index.php" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -478,16 +486,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="37" selection-start="813" selection-end="813" vertical-scroll-proportion="0.22200584" vertical-offset="0" max-vertical-offset="1027">
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="MarkdownPreviewEditor">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/classes/Job/Work/AbstractJob.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="32" column="35" selection-start="514" selection-end="514" vertical-scroll-proportion="0.37281552" vertical-offset="224" max-vertical-offset="1254">
@@ -499,7 +497,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="38" column="20" selection-start="623" selection-end="623" vertical-scroll-proportion="0.096116506" vertical-offset="623" max-vertical-offset="2109">
           <folding>
-            <element signature="e#27#45#0" expanded="true" />
+            <element signature="e#27#45#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -552,7 +550,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="32" selection-start="797" selection-end="797" vertical-scroll-proportion="0.2145631" vertical-offset="387" max-vertical-offset="3382">
+        <state line="26" column="12" selection-start="595" selection-end="595" vertical-scroll-proportion="-1.2916666" vertical-offset="463" max-vertical-offset="3382">
           <folding>
             <element signature="e#6#190#0" expanded="true" />
             <element signature="e#641#663#0" expanded="true" />
@@ -560,6 +558,16 @@
             <marker date="1413822092000" expanded="true" signature="2958:3101" placeholder="{...}" />
           </folding>
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="0" selection-start="487" selection-end="487" vertical-scroll-proportion="0.18500488" vertical-offset="0" max-vertical-offset="1027">
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
       </provider>
     </entry>
   </component>
