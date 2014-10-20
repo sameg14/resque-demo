@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e20a44b3-607a-4099-b546-67f0ab0558ab" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="resque-demo.iws" />
@@ -40,10 +39,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="README.md" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="README.md" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="0" selection-start="487" selection-end="487" vertical-scroll-proportion="0.18500488" vertical-offset="0" max-vertical-offset="1027">
+            <state line="18" column="46" selection-start="967" selection-end="967" vertical-scroll-proportion="-12.666667" vertical-offset="0" max-vertical-offset="456">
               <folding />
             </state>
           </provider>
@@ -81,10 +80,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JobScheduler.php" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="JobScheduler.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/classes/Job/Scheduler/JobScheduler.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="103" column="34" selection-start="2173" selection-end="2173" vertical-scroll-proportion="-72.041664" vertical-offset="228" max-vertical-offset="3876">
+            <state line="23" column="7" selection-start="347" selection-end="347" vertical-scroll-proportion="0.20291263" vertical-offset="228" max-vertical-offset="3876">
               <folding>
                 <element signature="e#33#57#0" expanded="true" />
               </folding>
@@ -509,15 +508,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/classes/Job/Scheduler/JobScheduler.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="103" column="34" selection-start="2173" selection-end="2173" vertical-scroll-proportion="-72.041664" vertical-offset="228" max-vertical-offset="3876">
-          <folding>
-            <element signature="e#33#57#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/com/jetbrains/php/lang/psi/stubs/data/standard_7.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="974" column="9" selection-start="28383" selection-end="28383" vertical-scroll-proportion="0.4514563" vertical-offset="18041" max-vertical-offset="21223">
@@ -562,12 +552,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="0" selection-start="487" selection-end="487" vertical-scroll-proportion="0.18500488" vertical-offset="0" max-vertical-offset="1027">
+        <state line="18" column="46" selection-start="967" selection-end="967" vertical-scroll-proportion="-12.666667" vertical-offset="0" max-vertical-offset="456">
           <folding />
         </state>
       </provider>
       <provider editor-type-id="MarkdownPreviewEditor">
         <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classes/Job/Scheduler/JobScheduler.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="7" selection-start="347" selection-end="347" vertical-scroll-proportion="0.20291263" vertical-offset="228" max-vertical-offset="3876">
+          <folding>
+            <element signature="e#33#57#0" expanded="true" />
+          </folding>
+        </state>
       </provider>
     </entry>
   </component>
