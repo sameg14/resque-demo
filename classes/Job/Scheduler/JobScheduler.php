@@ -104,7 +104,6 @@ class JobScheduler
         return $DataBroker->get();
     }
 
-
     /**
      * Get a list of all queues from redis.
      *
