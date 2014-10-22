@@ -2,7 +2,7 @@
 
 > Our discussion today will revolve around [resque](https://github.com/resque/resque), a [Redis](http://redis.io/) backed job queuing system. 
 
-Running code asynchronously is a sure fire way to ensure that your web server(s) don't crash if bombarded with a sudden influx of traffic. 
+Running code asynchronously is a sure fire way to ensure that your web server(s) don't crash if bombarded with a sudden influx of traffic, and to make your application work faster by deferring tasks. 
 When the amount of shoppers in a grocery store increase, the store doesn't hire more employees, the shoppers just get in line and wait till they are served.
 In a traditional client server model, requests are processed and served in real time, some of which could be deferred or run in the background.
 
