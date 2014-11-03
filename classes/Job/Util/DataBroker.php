@@ -38,8 +38,8 @@ class DataBroker
      */
     public function __construct($jobId)
     {
-        $this->jobId = $jobId;
         $this->Client = new Client();
+        $this->jobId = $jobId;
     }
 
     /**

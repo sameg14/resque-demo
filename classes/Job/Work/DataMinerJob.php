@@ -11,6 +11,8 @@ class DataMinerJob extends AbstractJob
 {
     public function perform()
     {
+        sleep(6);
+
         /** @var string $return Formatted data string we get back from job */
         $return = '<ul>';
 
@@ -29,9 +31,9 @@ class DataMinerJob extends AbstractJob
             $href = $node->getAttribute('href');
             $text = $node->textContent;
 
-            $url = str_replace('/mis', '', $this->args['url']).$href;
+            $url = 'http://austin.craigslist.org'.$href;
 
-            $return .= '<li>'.$text.' - '.$url.'</li>';
+            $return .= '<li>'.$text.' - <a href="'.$url.'" target="_blank">'.$url.'</a></li>';
         }
 
         $return .= '</ul>';

@@ -46,7 +46,7 @@ switch ($route) {
                 <a href="index.php?route=schedule&jobClass=DataMinerJob">
                     Schedule Data Miner Job
                 </a>
-                - Spin up a job that scrapes Craigslist missed connections. Return the data back to the client via a redis backed DataBroker
+                - Create a job that scrapes Craigslist missed connections. Return the data back to the client via a redis backed DataBroker
             </li>
         </ul>
         <?php
