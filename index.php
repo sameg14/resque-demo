@@ -19,12 +19,14 @@ switch ($route) {
     case 'homepage':
     {
         ?>
-        <style>body {
+        <style>
+            body {
                 font-family: verdana, arial, sans-serif;
                 background-color: #eee;
                 padding: 50px;
             }
         </style>
+        <?php include('github_ribbon.htm'); ?>
         <h3>Resque Demo</h3>
         <hr style="color:#D01F3C;"/>
         <ul>
