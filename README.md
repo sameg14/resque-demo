@@ -19,6 +19,36 @@ For instance: Lets say you wanted to build a simple checkout process for an onli
 If you didn't have a way to run code in the background, you would be forced to send the email and make the API calls in real time. 
 If you did, you could defer those tasks to run asynchronously, as they don't directly impact data that the user needs to complete her experience.
 
+#### Scheduling a new Job
+```php
+$Scheduler = new JobScheduler();
+
+/** @var string $jobClass What job are we trying to run? */
+$jobClass = isset($_GET['jobClass']) ? $_GET['jobClass'] : 'TestJob';
+
+$namespacePrefix = 'Job\\Work\\';
+
+// Set a fully name spaced job class i.e. the job that will run asynchronously
+$Scheduler->setJobClass($namespacePrefix . $jobClass);
+
+// Adding a switch here to create custom data for each of these jobs
+$jobData = array(
+    'to_name' => 'Samir Patel',
+    'to_address' => 'sameg14@gmail.com',
+    'subject' => 'Google news here',
+    'url' => 'https://news.google.com/'
+);
+
+// Set job data on the scheduler
+$Scheduler->setJobData($jobData);
+
+// Which queue do you want this job to run on
+$Scheduler->setQueue($queueName = 'default');
+
+// Schedule this job i.e. put it in the queue for a worker to consumer
+$jobId = $Scheduler->schedule();
+```
+
 #### Additional Resources
 [Setup and Usage](http://kamisama.me/2012/10/09/background-jobs-with-php-and-resque-part-1-introduction/) - Step by step article on how to setup and use
 
