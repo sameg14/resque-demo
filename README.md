@@ -19,11 +19,6 @@ For instance: Lets say you wanted to build a simple checkout process for an onli
 If you didn't have a way to run code in the background, you would be forced to send the email and make the API calls in real time. 
 If you did, you could defer those tasks to run asynchronously, as they don't directly impact data that the user needs to complete her experience.
 
-#### Demo Links
-[Demo Landing](http://resque.samirpatel.me/)
-
-[Resque-Web](http://resque.samirpatel.me:5678/overview)
-
 #### Additional Resources
 [Setup and Usage](http://kamisama.me/2012/10/09/background-jobs-with-php-and-resque-part-1-introduction/) - Step by step article on how to setup and use
 
