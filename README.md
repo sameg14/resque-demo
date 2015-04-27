@@ -23,15 +23,13 @@ If you did, you could defer those tasks to run asynchronously, as they don't dir
 ```php
 $Scheduler = new JobScheduler();
 
-/** @var string $jobClass What job are we trying to run? */
-$jobClass = isset($_GET['jobClass']) ? $_GET['jobClass'] : 'TestJob';
-
-$namespacePrefix = 'Job\\Work\\';
+/** @var string $job Full namespaced path of job class */
+$job = 'Job\\Work\\TestJob';
 
 // Set a fully name spaced job class i.e. the job that will run asynchronously
-$Scheduler->setJobClass($namespacePrefix . $jobClass);
+$Scheduler->setJobClass($job);
 
-// Adding a switch here to create custom data for each of these jobs
+/** @var array $jobData Data to put in the queue, which will be available to the worker */
 $jobData = array(
     'to_name' => 'Samir Patel',
     'to_address' => 'sameg14@gmail.com',
@@ -45,7 +43,7 @@ $Scheduler->setJobData($jobData);
 // Which queue do you want this job to run on
 $Scheduler->setQueue($queueName = 'default');
 
-// Schedule this job i.e. put it in the queue for a worker to consumer
+// Schedule this job i.e. put it in the queue for a worker to consume
 $jobId = $Scheduler->schedule();
 ```
 
