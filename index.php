@@ -49,7 +49,7 @@ switch ($route) {
                 - Create a job that scrapes Craigslist missed connections. Return the data back to the client via a redis backed DataBroker
             </li>
             <li>
-                <a href="<?php echo($_SERVER['HTTP_HOST']);?>:5678">View running jobs using resque-web interface</a>
+                <a href="http://<?php echo($_SERVER['HTTP_HOST']);?>:5678" target="_blank">View running jobs using resque-web interface</a>
             </li>
         </ul>
         <?php
